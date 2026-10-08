@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kia
+  labels:
+    app: kia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kia
+  template:
+    metadata:
+      labels:
+        app: kia
+    spec:
+      containers:
+        - name: kia
+          image: docker.io/altf4llc/fem-kubernetes:v1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: postgres
+            - name: DB_PASSWORD
+              value: demo-not-a-real-password
